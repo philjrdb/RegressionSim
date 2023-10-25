@@ -10,7 +10,7 @@ _dFF_simulation.m_ offers a sandbox environment to simulate fibre photometry dat
 
 The remainding functions are required for the dFF simulation:
 
-  _dFFsim_plot_dFsignals.m_ computes the dF and dF/F, and plots them along with the experimental, isosbestic and fitted isosbestic signals
-  _dFFsim_plot_ERT.m_ plots the peri-event dF/F
-  _dFFsim_plot_linTrend.m_ plots the linear trend of the resulting dF/F
-  _double_exp_decay.m_ is used to apply the double exponential decay (photobleaching) component to the raw signals
+  - _dFFsim_plot_dFsignals.m_ computes the dF and dF/F, and plots them along with the experimental, isosbestic and fitted isosbestic signals
+  - _dFFsim_plot_ERT.m_ plots the peri-event dF/F
+  - _dFFsim_plot_linTrend.m_ plots the linear trend of the resulting dF/F
+  - _double_exp_decay.m_ is used to apply the double exponential decay (photobleaching) component to the raw signals
