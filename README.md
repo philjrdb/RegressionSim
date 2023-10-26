@@ -4,7 +4,7 @@ Data and scripts for analyses of OLS vs IRLS regression on real and simulated ph
 _IRLS_dFF.m_ computes an Iteratively Reweighted Least-Squares (IRLS) dF/F score, given an experimental signal, isosbestic signal and IRLS tuning constant. 
 
 _dFF_simulation.m_ offers a sandbox environment to simulate fibre photometry data with a range of parameter options and test the consequences of different analysis options. This script:
-  - generates a experimental and isosbestic signals according to input parameters;
+  - simulates experimental and isosbestic signals according to input parameters;
   - computes multiple dF/F scores (and produces related peri-event plots) showing the effects of three key analytical decisions: low-pass filtering (low-pass vs no low-pass), regression type (OLS vs IRLS) and baseline correction (dF vs dF/F);
   - computes mean residuals and absolute residuals between normalized true and extracted signals.
 
