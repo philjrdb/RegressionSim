@@ -8,7 +8,7 @@ _dFF_simulation.m_ offers a sandbox environment to simulate fibre photometry dat
   - computes multiple dF/F scores (and produces related peri-event plots) showing the effects of three key analytical decisions: low-pass filtering (low-pass vs no low-pass), regression type (OLS vs IRLS) and baseline correction (dF vs dF/F);
   - computes mean residuals and absolute residuals between normalized true and extracted signals.
 
-The remainding functions are required for the dFF simulation:
+Remaining scripts are functions used by the dFF_simulation script:
 
   - _dFFsim_plot_dFsignals.m_ computes the dF and dF/F, and plots them along with the experimental, isosbestic and fitted isosbestic signals
   - _dFFsim_plot_ERT.m_ plots the peri-event dF/F
