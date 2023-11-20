@@ -16,3 +16,4 @@ Remaining scripts are functions used by the dFF_simulation script:
   - _dFFsim_plot_ERT.m_ plots the peri-event dF/F
   - _dFFsim_plot_linTrend.m_ plots the linear trend of the resulting dF/F
   - _double_exp_decay.m_ is used to apply the double exponential decay (photobleaching) component to the raw signals
+  - _nullZ.m_ is used to z-score the data around zero. 
