@@ -1,8 +1,8 @@
 %% Parameters (PLEASE FILL OUT)
-savefolder = 'G:\Current\Fibre Photometry\dFF_sim'; % Path to folder where the results to be saved
-sim_name = 'final_test'; % Name of simulation for multiple iterations with different paramaters
+savefolder = ''; % Path to folder where the results to be saved
+sim_name = ''; % Name of simulation for multiple iterations with different paramaters
                            % (change between iterations to avoid overriding previous plots)
-n_sims = 1; % # of simulations
+n_sims = 10; % # of simulations
 
 % Signal parameters
 samp_rate = 10; % sampling rate (Hz)
@@ -17,7 +17,7 @@ exp_decay_base = [40]; % decay % from exp base [40 40]
 exp_decay_rate1 = [.02]; % decay rate1 applied in double_exp_decay.m (rate1&2 of .02 & .002 works well) [.02 .02]
 exp_decay_rate2 = [.002]; % decay rate2 (for double exponent decay) [.002 .002]
 
-iso_base = [80]; % isosbestic signal baseline (starting/background fluorescence) [80 80]
+iso_base = [60]; % isosbestic signal baseline (starting/background fluorescence) [80 80]
 iso_decay_base = [40];  % decay % from iso base [40 40]
 iso_decay_rate1 = [.02]; % decay rate [.02 .05]
 iso_decay_rate2 = [.002]; % decay rate [.002 .002]
@@ -577,7 +577,7 @@ warning off;
       saveas(figure(1),[savefolder '\' sim_name '\ERT\nullZ Lp IRLS (c = ' num2str(IRLS_constant(c)) ') dFF trend (sim' int2str(sim) ').png']);
       close all
     end
-
+    
     %% Save results
     % Session signals
     dFFsim.(sim_name).results(sim).OLS_ft405 = OLS_ft405;
@@ -592,19 +592,19 @@ warning off;
     dFFsim.(sim_name).results(sim).nullZ_Lp_OLS_dF = nullZ_Lp_OLS_dF;
     dFFsim.(sim_name).results(sim).nullZ_Lp_OLS_dFF = nullZ_Lp_OLS_dFF;
     
-      % Results for IRLS (per constant)
-      for c = 1:length(IRLS_constant)
-        dFFsim.(sim_name).results(sim).(['IRLS' num2str(c) '_ft405']) = IRLS_ft405{c};
-        dFFsim.(sim_name).results(sim).(['IRLS' num2str(c) '_dF']) = IRLS_dF{c};
-        dFFsim.(sim_name).results(sim).(['IRLS' num2str(c) '_dFF']) = IRLS_dFF{c};
-        dFFsim.(sim_name).results(sim).(['nullZ_IRLS' num2str(c) '_dF']) = nullZ_IRLS_dF{c};
-        dFFsim.(sim_name).results(sim).(['nullZ_IRLS' num2str(c) '_dFF']) = nullZ_IRLS_dFF{c};
-        dFFsim.(sim_name).results(sim).(['Lp_IRLS' num2str(c) '_ft405']) = Lp_IRLS_ft405{c};
-        dFFsim.(sim_name).results(sim).(['Lp_IRLS' num2str(c) '_dF']) = Lp_IRLS_dF{c};
-        dFFsim.(sim_name).results(sim).(['Lp_IRLS' num2str(c) '_dFF']) = Lp_IRLS_dFF{c};
-        dFFsim.(sim_name).results(sim).(['nullZ_Lp_IRLS' num2str(c) '_dF']) = nullZ_Lp_IRLS_dF{c};
-        dFFsim.(sim_name).results(sim).(['nullZ_Lp_IRLS' num2str(c) '_dFF']) = nullZ_Lp_IRLS_dFF{c};
-      end
+    % Results for IRLS (per constant)
+    for c = 1:length(IRLS_constant)
+      dFFsim.(sim_name).results(sim).(['IRLS' num2str(c) '_ft405']) = IRLS_ft405{c};
+      dFFsim.(sim_name).results(sim).(['IRLS' num2str(c) '_dF']) = IRLS_dF{c};
+      dFFsim.(sim_name).results(sim).(['IRLS' num2str(c) '_dFF']) = IRLS_dFF{c};
+      dFFsim.(sim_name).results(sim).(['nullZ_IRLS' num2str(c) '_dF']) = nullZ_IRLS_dF{c};
+      dFFsim.(sim_name).results(sim).(['nullZ_IRLS' num2str(c) '_dFF']) = nullZ_IRLS_dFF{c};
+      dFFsim.(sim_name).results(sim).(['Lp_IRLS' num2str(c) '_ft405']) = Lp_IRLS_ft405{c};
+      dFFsim.(sim_name).results(sim).(['Lp_IRLS' num2str(c) '_dF']) = Lp_IRLS_dF{c};
+      dFFsim.(sim_name).results(sim).(['Lp_IRLS' num2str(c) '_dFF']) = Lp_IRLS_dFF{c};
+      dFFsim.(sim_name).results(sim).(['nullZ_Lp_IRLS' num2str(c) '_dF']) = nullZ_Lp_IRLS_dF{c};
+      dFFsim.(sim_name).results(sim).(['nullZ_Lp_IRLS' num2str(c) '_dFF']) = nullZ_Lp_IRLS_dFF{c};
+    end
 
     % ERT
     dFFsim.(sim_name).results(sim).true_ev = true_ev;
@@ -630,29 +630,30 @@ warning off;
     dFFsim.(sim_name).results(sim).nullZ_Lp_OLS_dFF_ev = nullZ_Lp_OLS_dFF_ev; 
     dFFsim.(sim_name).results(sim).nullZ_Lp_OLS_dFF_bsl = nullZ_Lp_OLS_dFF_bsl;
 
-      % Results for IRLS (per constant)
-      for c = 1:length(IRLS_constant)
-        dFFsim.(sim_name).results(sim).(['IRLS' num2str(c) '_dF_ev']) = IRLS_dF_ev{c};
-        dFFsim.(sim_name).results(sim).(['IRLS' num2str(c) '_dF_bsl']) = IRLS_dF_bsl{c};
-        dFFsim.(sim_name).results(sim).(['IRLS' num2str(c) '_dFF_ev']) = IRLS_dFF_ev{c};
-        dFFsim.(sim_name).results(sim).(['IRLS' num2str(c) '_dFF_bsl']) = IRLS_dFF_bsl{c};
-        dFFsim.(sim_name).results(sim).(['nullZ_IRLS' num2str(c) '_dF_ev']) = nullZ_IRLS_dF_ev{c};
-        dFFsim.(sim_name).results(sim).(['nullZ_IRLS' num2str(c) '_dF_bsl']) = nullZ_IRLS_dF_bsl{c};
-        dFFsim.(sim_name).results(sim).(['nullZ_IRLS' num2str(c) '_dFF_ev']) = nullZ_IRLS_dFF_ev{c};
-        dFFsim.(sim_name).results(sim).(['nullZ_IRLS' num2str(c) '_dFF_bsl']) = nullZ_IRLS_dFF_bsl{c};
-        dFFsim.(sim_name).results(sim).(['Lp_IRLS' num2str(c) '_dF_ev']) = Lp_IRLS_dF_ev{c};
-        dFFsim.(sim_name).results(sim).(['Lp_IRLS' num2str(c) '_dF_bsl']) = Lp_IRLS_dF_bsl{c};
-        dFFsim.(sim_name).results(sim).(['Lp_IRLS' num2str(c) '_dFF_ev']) = Lp_IRLS_dFF_ev{c};
-        dFFsim.(sim_name).results(sim).(['Lp_IRLS' num2str(c) '_dFF_bsl']) = Lp_IRLS_dFF_bsl{c};
-        dFFsim.(sim_name).results(sim).(['nullZ_Lp_IRLS' num2str(c) '_dF_ev']) = nullZ_Lp_IRLS_dF_ev{c};
-        dFFsim.(sim_name).results(sim).(['nullZ_Lp_IRLS' num2str(c) '_dF_bsl']) = nullZ_Lp_IRLS_dF_bsl{c};
-        dFFsim.(sim_name).results(sim).(['nullZ_Lp_IRLS' num2str(c) '_dFF_ev']) = nullZ_Lp_IRLS_dFF_ev{c};
-        dFFsim.(sim_name).results(sim).(['nullZ_Lp_IRLS' num2str(c) '_dFF_bsl']) = nullZ_Lp_IRLS_dFF_bsl{c};
-      end
+    % Results for IRLS (per constant)
+    for c = 1:length(IRLS_constant)
+      dFFsim.(sim_name).results(sim).(['IRLS' num2str(c) '_dF_ev']) = IRLS_dF_ev{c};
+      dFFsim.(sim_name).results(sim).(['IRLS' num2str(c) '_dF_bsl']) = IRLS_dF_bsl{c};
+      dFFsim.(sim_name).results(sim).(['IRLS' num2str(c) '_dFF_ev']) = IRLS_dFF_ev{c};
+      dFFsim.(sim_name).results(sim).(['IRLS' num2str(c) '_dFF_bsl']) = IRLS_dFF_bsl{c};
+      dFFsim.(sim_name).results(sim).(['nullZ_IRLS' num2str(c) '_dF_ev']) = nullZ_IRLS_dF_ev{c};
+      dFFsim.(sim_name).results(sim).(['nullZ_IRLS' num2str(c) '_dF_bsl']) = nullZ_IRLS_dF_bsl{c};
+      dFFsim.(sim_name).results(sim).(['nullZ_IRLS' num2str(c) '_dFF_ev']) = nullZ_IRLS_dFF_ev{c};
+      dFFsim.(sim_name).results(sim).(['nullZ_IRLS' num2str(c) '_dFF_bsl']) = nullZ_IRLS_dFF_bsl{c};
+      dFFsim.(sim_name).results(sim).(['Lp_IRLS' num2str(c) '_dF_ev']) = Lp_IRLS_dF_ev{c};
+      dFFsim.(sim_name).results(sim).(['Lp_IRLS' num2str(c) '_dF_bsl']) = Lp_IRLS_dF_bsl{c};
+      dFFsim.(sim_name).results(sim).(['Lp_IRLS' num2str(c) '_dFF_ev']) = Lp_IRLS_dFF_ev{c};
+      dFFsim.(sim_name).results(sim).(['Lp_IRLS' num2str(c) '_dFF_bsl']) = Lp_IRLS_dFF_bsl{c};
+      dFFsim.(sim_name).results(sim).(['nullZ_Lp_IRLS' num2str(c) '_dF_ev']) = nullZ_Lp_IRLS_dF_ev{c};
+      dFFsim.(sim_name).results(sim).(['nullZ_Lp_IRLS' num2str(c) '_dF_bsl']) = nullZ_Lp_IRLS_dF_bsl{c};
+      dFFsim.(sim_name).results(sim).(['nullZ_Lp_IRLS' num2str(c) '_dFF_ev']) = nullZ_Lp_IRLS_dFF_ev{c};
+      dFFsim.(sim_name).results(sim).(['nullZ_Lp_IRLS' num2str(c) '_dFF_bsl']) = nullZ_Lp_IRLS_dFF_bsl{c};
+    end
     
     fprintf('Done. ');
     diary OFF
     toc;
+
   end
   
 %% Calculate residuals and absolute residuals from true signal
@@ -700,6 +701,111 @@ warning off;
       dFFsim.(sim_name).results(sim).([res_fields{f} '_meanBsl_abres']) = mean(abs(data(~event_idx)));
     end
   end
+
+%% Calculate CIs and inferential errors for ERTs
+ % Acquire names of ERT signals
+
+ all_fields = fieldnames(dFFsim.(sim_name).results(sim));
+ ERT_signals = all_fields(contains(all_fields, 'nullZ_') & contains(all_fields, '_ev'))';
+   
+ % Loop through simulations and ERT signals and calculate CIs and errors
+
+ for sim = 1:n_sims
+    for i = 1:length(ERT_signals)
+
+        signal_name = ERT_signals{i};
+
+        % Calculate CIs (significance and direction only)
+
+        [h, ~, ~, stats] = ttest(dFFsim.(sim_name).results(sim).(signal_name));
+        
+        dFFsim.(sim_name).CI_results.significance(sim).(signal_name) = h;
+        dFFsim.(sim_name).CI_results.direction(sim).(signal_name) = sign(stats.tstat);
+
+        % Apply consecutive threshold to significance values
+        
+        data_leng = length(dFFsim.(sim_name).CI_results.significance(sim).(signal_name));
+        momentary_sig = zeros(1,data_leng);
+        sig_idx = find(dFFsim.(sim_name).CI_results.significance(sim).(signal_name) == 1);
+        consec = consec_idx(sig_idx, Lp_cutoff);
+        momentary_sig(sig_idx(consec)) = 1;
+
+        dFFsim.(sim_name).CI_results.significance(sim).(signal_name) = momentary_sig;
+
+        % Calculate Type I, II and III errors from CIs
+        % Get significance and direction for nullZ_true_ev and the current signal
+
+        true_sig = dFFsim.(sim_name).CI_results.significance(sim).nullZ_true_ev;
+        true_dir = dFFsim.(sim_name).CI_results.direction(sim).nullZ_true_ev;
+        
+        est_sig = dFFsim.(sim_name).CI_results.significance(sim).(signal_name);
+        est_dir = dFFsim.(sim_name).CI_results.direction(sim).(signal_name);
+        
+        error_classification = zeros(1, length(true_sig));
+        
+        % Loop through each time point to classify errors
+
+        for t = 1:length(true_sig)
+            if true_sig(t) == 0 && est_sig(t) == 0
+                error_classification(t) = 0; % No error
+            elseif true_sig(t) == 0 && est_sig(t) == 1
+                error_classification(t) = 1; % Type I error
+            elseif true_sig(t) == 1 && est_sig(t) == 0
+                error_classification(t) = 2; % Type II error
+            elseif true_sig(t) == 1 && est_sig(t) == 1
+                if true_dir(t) ~= est_dir(t)
+                    error_classification(t) = 3; % Type III error
+                else
+                    error_classification(t) = 0; % No error
+                end
+            end
+        end
+
+        dFFsim.(sim_name).CI_results.errors(sim).(signal_name) = error_classification;
+
+    end
+
+    % Plot signficiance values (all signals together)
+    
+    all_momentary_signals = cell(numel(ERT_signals), 1);
+
+    % Re-calculate CI sig. values, this time using NaNs and zeros for plotting
+    
+    for i = 1:numel(ERT_signals)
+        data_leng = length(dFFsim.(sim_name).CI_results.significance(sim).(ERT_signals{i}));
+        momentary_sig = NaN(1, data_leng);
+        sig_idx = find(dFFsim.(sim_name).CI_results.significance(sim).(ERT_signals{i}) == 1);
+        consec = consec_idx(sig_idx, Lp_cutoff);
+        momentary_sig(sig_idx(consec)) = 0;
+        
+        offset_factor = 2; % Spaces out signals along y-axis on plot
+        momentary_sig = momentary_sig + offset_factor * i;
+    
+        all_momentary_signals{i} = momentary_sig;
+    end
+    
+    % Plot all signal CIs
+
+    figure;
+    hold on;
+    legend_labels = strrep(ERT_signals, '_', '\_');
+    for i = 1:numel(ERT_signals)
+        plot(1:data_leng, all_momentary_signals{i}, 'LineWidth', 8);
+    end
+    xlabel('Time Point (tenth of sec)');
+    ylabel('');
+    legend(legend_labels, 'Location', 'eastoutside');
+    title('95% tCI');
+    line([pre_post_idx + 1, pre_post_idx + 1], ylim, 'Color', 'k', 'LineStyle', '--', 'HandleVisibility', 'off'); 
+    line([data_leng - pre_post_idx, data_leng - pre_post_idx], ylim, 'Color', 'k', 'LineStyle', '--', 'HandleVisibility', 'off');
+    
+    set(gcf,'Position',get(0,'Screensize'));
+    saveas(gcf, [savefolder '\' sim_name '\ERT\all_signals_tCI(sim' int2str(sim) ').png']);
+    print(gcf, [savefolder '\' sim_name '\ERT\all_signals_tCI(sim' int2str(sim) ').eps'], '-depsc2', '-vector');
+    hold off;
+    close all
+ end
+
 
 %% Done
 clearvars -except dFFsim savefolder sim_name
