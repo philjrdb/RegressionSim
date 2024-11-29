@@ -22,3 +22,4 @@ The remaining scripts are functions used by the dFF_simulation script:
 
 ---------------------------
 EDITS/ADDITIONS [2024-11-14] - Updated _dFF_simulation.m_ to include calculation and plotting of tCIs, and identification of inferential errors for ERTs of each simulated signal. Added function _consec_idx.m_ which is used in dFF simulation to apply consecutive significance threshold to the tCI.
+ADDITIONS [2024-11-29] - Added code and data relating to Fig. S3 (detrended dF on simulated data) and Fig. S4 (real data) from our article. NOTE: _FigS4_analysis.m_ will also require _consec_idx.m_ and _nullZ.m_.
